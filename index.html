@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<head>
+<meta charset="UTF-8">
+<title>My Valentine ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #2b0a14, #0b0205);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    overflow: hidden;
+}
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: black;
+    z-index: 9999;
+}
+
+body::before {
+    top: 0;
+}
+
+body::after {
+    bottom: 0;
+}
+
+
+.container {
+    max-width: 900px;
+    padding: 60px;
+    text-align: center;
+    animation: fadeIn 2s ease;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.8em;
+    margin-bottom: 20px;
+    color: #ffd6e8;
+    text-shadow: 0 0 20px rgba(255, 182, 193, 0.6);
+}
+h1 {
+    animation: heartbeat 4s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    10% { transform: scale(1.04); }
+    20% { transform: scale(1); }
+    30% { transform: scale(1.04); }
+    40% { transform: scale(1); }
+}
+
+
+
+p {
+    font-size: 1.2em;
+    line-height: 1.8;
+    color: #f5c7d8;
+}
+
+.buttons {
+    margin-top: 40px;
+}
+
+button {
+    padding: 15px 45px;
+    font-size: 1.1em;
+    border-radius: 40px;
+    border: none;
+    margin: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.yes {
+    background: linear-gradient(135deg, #ff4d6d, #ff758f);
+    color: white;
+    box-shadow: 0 15px 30px rgba(255, 77, 109, 0.4);
+}
+
+.yes:hover {
+    transform: translateY(-4px);
+}
+
+.no {
+    background: transparent;
+    color: #bbb;
+    border: 1px solid #777;
+}
+
+.hidden {
+    display: none;
+}
+
+.gallery {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.gallery {
+    animation: sceneEnter 2.5s ease forwards;
+}
+
+@keyframes sceneEnter {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.gallery img {
+    width: 260px;
+    border-radius: 20px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+    animation: float 12s ease-in-out infinite;
+    transition: transform 1s ease;
+}
+
+/* Each image moves slightly differently */
+.gallery img:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.gallery img:nth-child(2) {
+    animation-delay: 4s;
+}
+
+.gallery img:nth-child(3) {
+    animation-delay: 8s;
+}
+
+/* Cinematic floating animation */
+@keyframes float {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-20px) scale(1.04);
+    }
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}
+
+.gallery {
+    position: relative;
+}
+
+.gallery img {
+    animation-name: float, pan;
+}
+
+@keyframes pan {
+    0% {
+        transform: translateX(0) translateY(0) scale(1);
+    }
+    50% {
+        transform: translateX(15px) translateY(-20px) scale(1.04);
+    }
+    100% {
+        transform: translateX(0) translateY(0) scale(1);
+    }
+}
+
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+.signature {
+    margin-top: 40px;
+    font-style: italic;
+    color: #ffd6e8;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" src="love.mp3"></audio>
+
+<!-- PAGE 1 -->
+<div class="container" id="question">
+    <h1>Tsidi Will You Be My Valentine?</h1>
+    <p>
+        This isn’t just a question.<br>
+        It’s my heart choosing you... again and again.
+    </p>
+
+    <div class="buttons">
+        <button class="yes" onclick="showLove()">Yes ❤️</button>
+        <button class="no" onclick="sayNo()">No</button>
+    </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="container hidden" id="love">
+    <h1>Why I Love You ❤️</h1>
+
+    <p>
+        I love the way you bring Peace into my life.<br>
+        The way you believe in me and support me.<br>
+        Thank you for always being there for me.<br>
+        Thank you for your prayers mama's.<br>
+        I Love you Tsidi, Always
+    </p>
+
+    <div class="gallery">
+        <img src="photo1.jpg">
+        <img src="photo2.jpg">
+        <img src="photo3.jpg">
+    </div>
+
+    <p class="signature">
+        Always yours,<br>
+        Tintswalo
+    </p>
+
+    <div class="buttons">
+        <button class="yes" onclick="showDate()">One more thing 💌</button>
+    </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="container hidden" id="date">
+    <h1>It’s a Date 💐</h1>
+
+    <p>
+        Friday, 14 February<br>
+        7:00 PM<br><br>
+        I’ll pick you up.<br>
+        You just need to look beautiful (as always).
+    </p>
+
+    <p>
+        Dinner • Conversations • Memories we’ll never forget
+    </p>
+
+    <p class="signature">
+        Happy Valentine’s Day ❤️<br>
+        I can’t wait.
+    </p>
+</div>
+
+
+<script>
+function showLove() {
+    document.getElementById("music").play();
+
+    // Confetti burst
+    confetti({
+        particleCount: 180,
+        spread: 120,
+        origin: { y: 0.6 }
+    });
+
+    setTimeout(() => {
+        document.getElementById("question").classList.add("hidden");
+        document.getElementById("love").classList.remove("hidden");
+    }, 600);
+}
+
+
+function showDate() {
+    document.getElementById("love").classList.add("hidden");
+    document.getElementById("date").classList.remove("hidden");
+}
+
+function sayNo() {
+    alert("I respect free will… but my heart disagrees 😌❤️");
+}
+</script>
+
+</body>
+</html>
+
+
